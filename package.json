@@ -1,0 +1,24 @@
+{
+  "name": "employee-dms",
+  "version": "1.0.0",
+  "description": "an employee tracking system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mghaffar89/Employee-DMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mghaffar89/Employee-DMS/issues"
+  },
+  "homepage": "https://github.com/mghaffar89/Employee-DMS#readme",
+  "dependencies": {
+    "inquirer": "^7.3.0",
+    "mysql2": "^2.1.0"
+  }
+}
