@@ -24,7 +24,7 @@ connection.connect((err) => {
     res.status(500);
     return res.send("There was an error connecting to the database.");
   }
-  console.log("You're connected!");
+  console.log("Connceted to Employee Data Management System!");
 
   runSearch();
 });
@@ -227,4 +227,16 @@ function runSearch() {
           break;
       }
     });
+}
+
+// Function to view all employees"
+function byEmployees() {
+  var results = connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.d_name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;",
+
+    function (error, results) {
+      if (error) throw error;
+      console.table(results);
+    }
+  );
 }
