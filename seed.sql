@@ -1,7 +1,7 @@
-use employee_DB;
+use employee_tracker;
 
 INSERT INTO department
-    (name)
+    (d_name)
 VALUES
     ('Sales'),
     ('Accounting'),
