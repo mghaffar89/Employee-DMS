@@ -229,7 +229,7 @@ function runSearch() {
     });
 }
 
-// Function to view all employees"
+// Function to view all employees
 function byEmployees() {
   var results = connection.query(
     "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.d_name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;",
@@ -237,6 +237,30 @@ function byEmployees() {
     function (error, results) {
       if (error) throw error;
       console.table(results);
+    }
+  );
+}
+
+// Function to view all employees by department
+function byDepartment() {
+  var department = connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, department.d_name FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department department on role.department_id = department.id WHERE department.id;",
+
+    function (error, department) {
+      if (error) throw error;
+      console.table(department);
+    }
+  );
+}
+
+// function to view all employees by manager
+function byManager() {
+  var manager = connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, department.d_name, employee.manager_id AS department, role.title FROM employee LEFT JOIN role on role.id = employee.role_id LEFT JOIN department ON department.id = role.department_id WHERE manager_id;",
+
+    function (error, manager) {
+      if (error) throw error;
+      console.table(manager);
     }
   );
 }
