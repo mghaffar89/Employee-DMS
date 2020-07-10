@@ -275,3 +275,68 @@ function addEmployee(employeeFirst, employeeLast, department, manager) {
   );
   byEmployees();
 }
+
+function departmentTable() {
+  var depTable = connection.query("SELECT d_name FROM department;", function (
+    error,
+    depTable
+  ) {
+    if (error) throw error;
+    console.table(depTable);
+  });
+}
+
+function addDepartment(department) {
+  var department = connection.query(
+    "INSERT INTO department SET d_name = ?",
+    [department],
+    function (error, department) {
+      if (error) throw error;
+    }
+  );
+  departmentTable();
+}
+
+function roleTable() {
+  var roleT = connection.query(
+    "SELECT title, salary, department_id FROM role;",
+
+    function (error, roleT) {
+      if (error) throw error;
+      console.table(roleT);
+    }
+  );
+}
+
+function addRole(title, salary, department_id) {
+  var newRole = connection.query(
+    "INSERT INTO role SET title = ?, salary = ?, department_id = ?",
+    [title, salary, department_id],
+    function (error, newRole) {
+      if (error) throw error;
+    }
+  );
+  roleTable();
+}
+
+function removeEmployee(id) {
+  var add = connection.query(
+    "DELETE FROM employee WHERE id = ?",
+    [id],
+    function (error, id) {
+      if (error) throw error;
+    }
+  );
+  byEmployees();
+}
+
+function updateByRole(employeeId, roleId) {
+  var byRole = connection.query(
+    "UPDATE employee SET role_id = ? WHERE id = ?",
+    [roleId, employeeId],
+    function (error, role) {
+      if (error) throw error;
+    }
+  );
+  byDepartment();
+}
