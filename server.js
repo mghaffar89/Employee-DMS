@@ -114,7 +114,6 @@ function runSearch() {
               );
               runSearch();
             });
-
           break;
 
         case "Add Department":
@@ -263,4 +262,16 @@ function byManager() {
       console.table(manager);
     }
   );
+}
+
+// function to add an employee
+function addEmployee(employeeFirst, employeeLast, department, manager) {
+  var add = connection.query(
+    "INSERT INTO employee SET first_name = ?, last_name = ?, role_id = ?, manager_id = ?",
+    [employeeFirst, employeeLast, department, manager],
+    function (error, add) {
+      if (error) throw error;
+    }
+  );
+  byEmployees();
 }
